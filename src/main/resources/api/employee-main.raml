@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: employee-sapi
+version: v1
+protocols:
+  - HTTPS
+
+
+uses: 
+  commonApiAttributes: /common-attributes/common-attributes.raml
+  
+/employee:
+  post:
+    description: create employee.
+    is: [commonApiAttributes.client-credentials,
+         commonApiAttributes.content-type,
+         commonApiAttributes.trace-id,
+         commonApiAttributes.standard-responses]
+    body:
+      application/json:
+        type: !include /dataTypes/employee.raml
+        example: !include /examples/employee-request.raml
+    responses:
+      201:
+        body:
+          application/json:
+            type: any
+            example: !include examples/employee-response.raml

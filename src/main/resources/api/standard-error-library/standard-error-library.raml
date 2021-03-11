@@ -1,0 +1,161 @@
+#%RAML 1.0 Library
+types:
+  StandardError:
+    displayName: Standard Error Response Item
+    description: Error Response
+    type: object
+    properties:
+      node:
+        description: API Name
+        required: true
+        type: string
+        example: Store location System API 
+      code:
+        description: Status Code
+        required: true
+        type: number
+        example: 401
+      message:
+        description: Error Message
+        required: true
+        type: string
+        example: NOT_AUTHORIZED
+      description:
+        description: Error Description
+        required: true
+        type: string
+        example:  "The request has not been applied because it lacks valid authentication credentials for the target resource."
+      transactionId:
+        description: Transaction ID
+        required: true
+        type: string
+        example: 803ec5202bd54576992d082da70e6338
+      traceId:
+        description: Trace ID
+        required: true
+        type: string
+        example: 712def66-c54a-11ea-87d0-0242ac130003
+        
+traits:
+  default:
+    responses:
+      400:
+        description: |+
+          The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 400,
+                "message": "BAD_REQUEST",
+                "description": "The server cannot or will not process the request due to something that is perceived to be a client error.",
+                "transactionId": "803ec5202bd54576992d082da70e6338",
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      401:
+        description: |+
+          The supplied credentials are invalid.
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 401,
+                "message": "NOT_AUTHORIZED",
+                "description": "The request has not been applied because it lacks valid authentication credentials for the target resource.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      403:
+        description: |+
+          TThe server understood the request but refuses to authorize it.
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 403,
+                "message": "FORBIDDEN",
+                "description": "The server understood the request but refuses to authorize it. The client MAY repeat the request with new or different credentials.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }  
+      404:
+        description: |+
+          The server cannot find the requested resource.
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 404,
+                "message": "RESOURCE_NOT_FOUND",
+                "description": "The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      405:
+        description: |+
+          A request was made of a resource using a request method not supported by that resource; for example, using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource.
+        body:
+          application/json: 
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 405,
+                "message": "METHOD_NOT_ALLOWED",
+                "description": "The method received in the request-line is known by the origin server but not supported by the target resource.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      406:
+        description: |+
+          The target resource does not have a current representation that would be acceptable to the user agent.
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 406,
+                "message": "NOT_ACCEPTABLE",
+                "description": "The target resource does not have a current representation that would be acceptable to the user agent, according to the proactive negotiation header fields received in the request, and the server is unwilling to supply a default representation.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      415:
+        description: |+
+           The origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource.
+        body:
+          application/json: 
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 415,
+                "message": "UNSUPPORTED_MEDIA_TYPE",
+                "description": "The format problem might be due to the request's indicated Content-Type or Content-Encoding, or as a result of inspecting the data directly.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }
+      500:
+        description: |+
+          An internal processing error occurred while processing the API request.
+        body:
+          application/json:
+            type: StandardError
+            example: |
+              {
+                "node": "Store location System API",
+                "code": 500,
+                "message": "INTERNAL_SERVER_ERROR",
+                "description": "The server encountered an unexpected condition that prevented it from fulfilling the request.",
+                "transactionId": "803ec5202bd54576992d082da70e6338" ,
+                "traceId" : "712def66-c54a-11ea-87d0-0242ac130003"
+              }

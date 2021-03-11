@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+  
+uses:
+  standard-error-responses : /standard-error-library/standard-error-library.raml
+  
+traits:
+  client-credentials: !include /client-credentials/client-credentials.raml
+  content-type: !include /content-type/content-type.raml
+  trace-id: !include /trace-id/trace-id.raml
+  standard-responses: 
+    is : [standard-error-responses.default]
+    
